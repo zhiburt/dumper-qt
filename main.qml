@@ -10,6 +10,8 @@ ApplicationWindow {
 
     SwipeView {
         id: swipeView
+        anchors.leftMargin: 64
+        anchors.topMargin: 47
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
@@ -18,19 +20,38 @@ ApplicationWindow {
 
         Page2Form {
         }
-    }
 
-    footer: TabBar {
-        id: tabBar
-        currentIndex: swipeView.currentIndex
+        Page2Form {
 
-        TabButton {
-            text: qsTr("Page 1")
-        }
-        TabButton {
-            text: qsTr("Page 2")
         }
     }
+
+
+    Item { //base component
+                    id: baseBar
+                    width: but1.height // width as TabBar height before rotation
+                    height: parent.height
+
+                    TabBar {
+                        id: tabBar
+                        width: parent.height
+                        height: but1.height
+                        currentIndex: swipeView.currentIndex
+
+                        transform: [
+                            Rotation { origin.x: 0; origin.y: 0; angle: -90} // rotate around the upper left corner counterclockwise
+                            ,Translate { y: baseBar.height; x: 0 } // move to the bottom of the base
+                        ]
+
+                        TabButton {
+                            id: but1
+                            text: qsTr("Processes")
+                        }
+                        TabButton {
+                            text: qsTr("Settings")
+                    } //TabBar
+                } //Item
+}
 
     header: MenuBar {
         id: mainMenuBar

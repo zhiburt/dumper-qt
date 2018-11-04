@@ -15,7 +15,8 @@ QHash<int, QByteArray> Processes::roleNames() const {
 
     roles[ProcessesRoles::PidRole] = "pid";
     roles[ProcessesRoles::NameRole] = "name";
-    roles[ProcessesRoles::StateRole] = "state";
+    roles[ProcessesRoles::StateRole] = "stateProc";
+
     return roles;
 }
 
@@ -43,7 +44,6 @@ QVariant Processes::data(const QModelIndex &index, int role) const
            if (role == ProcessesRoles::NameRole) return QVariant::fromValue(item->GetName());
            if (role == ProcessesRoles::PidRole) return QVariant::fromValue(item->GetPid());
            if (role == ProcessesRoles::StateRole) return QVariant::fromValue(item->GetState());
-
     return {};
 }
 
@@ -51,10 +51,11 @@ QVariant Processes::data(const QModelIndex &index, int role) const
 #define PROC_DIRECTORY "/proc/"
 
 int IsNumeric(const char* ccharptr_CharacterList)
-{
+{   
     for ( ; *ccharptr_CharacterList; ccharptr_CharacterList++)
         if (*ccharptr_CharacterList < '0' || *ccharptr_CharacterList > '9')
             return 0; // false
+
     return 1; // true
 }
 
@@ -80,6 +81,18 @@ std::string getProcessState(const std::string& fileContent){
     return "invalid state";
 }
 
+
+void Processes::update(){
+
+    emit beginResetModel();
+
+    this->proceses.clear();
+    this->Update();
+
+    emit endResetModel();
+
+    //emit dataChanged(QModelIndex(), QModelIndex());
+}
 
 void Processes::Update(){
     struct dirent* dirEntity = NULL ;
@@ -109,7 +122,6 @@ void Processes::Update(){
                 std::string nameProcess = getProcessName(fileContent.str());
                 std::string statusProcess = getProcessState(fileContent.str());
 
-
                 AddProcess(dirEntity->d_name, nameProcess, statusProcess);
 
                 fileContent.clear();
@@ -117,5 +129,7 @@ void Processes::Update(){
             }
         }
     }
+
+
     closedir(dir_proc);
 }

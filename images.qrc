@@ -3,5 +3,7 @@
         <file>images/Hans_Gude.png</file>
         <file>images/Ernest_Hemingway.png</file>
         <file>images/Albert_Einstein.png</file>
+        <file>images/settings_button.png</file>
+        <file>images/processes_button.png</file>
     </qresource>
 </RCC>
