@@ -6,5 +6,8 @@
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>ContractModel.qml</file>
+        <file>List.qml</file>
+        <file>ConversationPage.qml</file>
+        <file>ProcesesList.qml</file>
     </qresource>
 </RCC>

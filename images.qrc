@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/chat">
+        <file>images/Hans_Gude.png</file>
+        <file>images/Ernest_Hemingway.png</file>
+        <file>images/Albert_Einstein.png</file>
+    </qresource>
+</RCC>

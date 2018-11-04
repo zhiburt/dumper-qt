@@ -32,26 +32,39 @@ ApplicationWindow {
         }
     }
 
-    header: ToolBar {
-           RowLayout {
-               anchors.fill: parent
-               ToolButton {
-                   text: qsTr("‹")
-                   onClicked: stack.pop()
-               }
-               Label {
-                   text: "Dumper"
-                   elide: Label.ElideRight
-                   horizontalAlignment: Qt.AlignHCenter
-                   verticalAlignment: Qt.AlignVCenter
-                   Layout.fillWidth: true
+    header: MenuBar {
+        id: mainMenuBar
+        currentIndex: swipeView.currentIndex
 
-               }
-               ToolButton {
-                   text: qsTr("‹")
-                   onClicked: menu.open()
-               }
+        MenuBarItem{
+            text: qsTr("File")
+            menu: Menu{
+                MenuItem{
+                    text: qsTr("Open")
+                }
 
-           }
-       }
+                MenuItem{
+                    text: qsTr("Save")
+                }
+
+                MenuItem{
+                    text: qsTr("...")
+                }
+
+
+                MenuItem{
+                    text: qsTr("...")
+                }
+            }
+        }
+
+        MenuBarItem{
+            text: qsTr("Help")
+        }
+
+
+        MenuBarItem{
+            text: qsTr("...")
+        }
+    }
 }

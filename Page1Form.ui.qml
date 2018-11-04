@@ -1,80 +1,34 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.4
+import QtQuick.Dialogs 1.2
+import io.qt.examples.backend 1.0
 
 Page {
+    id: root
     width: 600
     height: 400
 
     header: Label {
-        text: qsTr("Page 1")
+        text: qsTr(backend.userName)
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
     }
 
-    ListModel {
-        id: libraryModel
-        ListElement {
-            title: "A Masterpiece"
-            author: "Gabriel"
-        }
-        ListElement {
-            title: "Brilliance"
-            author: "Jens"
-        }
-        ListElement {
-            title: "Outstanding"
-            author: "Frederik"
-        }
-    }
-
-    Rectangle {
-        width: 180; height: 200
-
-        Item {
-            id: contactDelegate
-            Item {
-                width: 180; height: 40
-                Column {
-                    Text { text: '<b>Name:</b> ' + name }
-                    Text { text: '<b>Number:</b> ' + number }
-                }
-            }
-        }
-
-        ListView {
+    StackView {
+            id: stackView
             anchors.fill: parent
-            model: ContractModel {}
-            delegate: contactDelegate
-            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
-            focus: true
-        }
-    }
-
-    ListView {
-        width: 180; height: 200
-
-        Item {
-            id: contactsDelegate
-            Rectangle {
-                id: wrapper
-                width: 180
-                height: contactInfo.height
-                color: ListView.isCurrentItem ? "black" : "red"
-                Text {
-                    id: contactInfo
-                    text: name + ": " + number
-                    color: wrapper.ListView.isCurrentItem ? "red" : "black"
-                }
-            }
+            initialItem: ProcesesList{}
         }
 
-        model: ContractModel {}
-        delegate: contactsDelegate
-        focus: true
-    }
+        BackEnd {
+            id: backend
+        }
 
-    Label {
-        text: qsTr("You are on Page 1.")
-        anchors.centerIn: parent
-    }
+        TextField {
+            text: backend.userName
+            placeholderText: qsTr("User name")
+            anchors.centerIn: parent
+
+            onTextChanged: backend.userName = text
+}
 }
