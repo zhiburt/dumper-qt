@@ -11,7 +11,7 @@ ApplicationWindow {
     SwipeView {
         id: swipeView
         anchors.leftMargin: 64
-        anchors.topMargin: 47
+        anchors.topMargin: 10
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
@@ -19,10 +19,6 @@ ApplicationWindow {
         }
 
         Page2Form {
-        }
-
-        Page2Form {
-
         }
     }
 

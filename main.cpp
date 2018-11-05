@@ -1,5 +1,6 @@
 #include "backend.h"
 #include "processes.h"
+#include "processdump.h"
 #include "proc.h"
 
 #include <QGuiApplication>
@@ -14,6 +15,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<BackEnd>("io.qt.examples.backend", 1, 0, "BackEnd");
+    qmlRegisterType<ProcessDump>("io.qt.examples.processdump", 1, 0, "ProcessDump");
 
     //qmlRegisterType<Processes>("io.qt.processes.proc", 1, 0, "Processes");
     //qmlRegisterType<Proc>("io.qt.processes.proc", 1, 0, "Proc");

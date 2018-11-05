@@ -9,15 +9,14 @@ Page {
     height: 400
 
     header:    Label {
-                text: qsTr(backend.userName)
-                font.pixelSize: Qt.application.font.pixelSize * 2
-                padding: 10
+        text: qsTr(backend.userName)
+        font.pixelSize: Qt.application.font.pixelSize * 2
             }
 
     StackView {
         id: stackView
         anchors.leftMargin: 0
-        anchors.topMargin: 20
+        anchors.topMargin: 0
         anchors.fill: parent
         initialItem: ProcesesList {
             id: listView

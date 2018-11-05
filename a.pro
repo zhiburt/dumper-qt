@@ -16,7 +16,8 @@ SOURCES += \
         main.cpp \
     backend.cpp \
     processes.cpp \
-    proc.cpp
+    proc.cpp \
+    processdump.cpp
 
 RESOURCES += qml.qrc \
     images.qrc
@@ -35,4 +36,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     backend.h \
     processes.h \
-    proc.h
+    proc.h \
+    processdump.h
+#libs
+LIBS += $$PWD/libs/dumper.o

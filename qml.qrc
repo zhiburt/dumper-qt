@@ -9,5 +9,6 @@
         <file>List.qml</file>
         <file>ConversationPage.qml</file>
         <file>ProcesesList.qml</file>
+        <file>ProcessView.qml</file>
     </qresource>
 </RCC>
