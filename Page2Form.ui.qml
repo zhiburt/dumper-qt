@@ -3,10 +3,14 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 
 Page {
-    id: page
+    id: root
     width: 600
     height: 400
     background: black
+
+    property int  switchOneInfo: (switch1.checked) ? 0 : 1
+    property int  switchTwoInfo: (switch2.checked) ? 0 : 1
+
 
     header: Label {
         text: qsTr("settings")
@@ -90,8 +94,8 @@ Page {
             text: qsTr("something else")
         }
     }
+}
 
-    }
 
 /*##^## Designer {
     D{i:8;anchors_width:226;anchors_x:17;anchors_y:6}D{i:10;anchors_width:226;anchors_x:321}

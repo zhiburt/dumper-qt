@@ -13,7 +13,7 @@ class ProcessDump : public QObject
 public:
     explicit ProcessDump(QObject *parent = nullptr);
 
-    Q_INVOKABLE void get(const QString &pid);
+    Q_INVOKABLE void get(const QString &pid, int settingsAddresses, int settingsContent);
     QString getDump();
     void setPid(const QString &pid);
 

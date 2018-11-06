@@ -3,6 +3,7 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 
 ApplicationWindow {
+    id: root
     visible: true
     width: 1024
     height: 480
@@ -16,9 +17,13 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
 
         Page1Form {
+            id: pageFirst
+            settingsAddr: pageSecond.switchOneInfo
+            settingsCont: pageSecond.switchTwoInfo
         }
 
         Page2Form {
+            id: pageSecond
         }
     }
 

@@ -8,6 +8,9 @@ Page {
     width: 600
     height: 400
 
+    property int settingsAddr: 1
+    property int settingsCont: 1
+
     header:    Label {
         text: qsTr(backend.userName)
         font.pixelSize: Qt.application.font.pixelSize * 2
@@ -20,6 +23,8 @@ Page {
         anchors.fill: parent
         initialItem: ProcesesList {
             id: listView
+            settingsAddresses: settingsAddr
+            settingsContent: settingsCont
         }
     }
 

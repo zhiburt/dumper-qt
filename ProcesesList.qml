@@ -7,6 +7,9 @@ import QtQuick.Controls.Universal 2.4
 Item {
     id: root
 
+    property int settingsAddresses: 1
+    property int settingsContent: 1
+
     ToolBar{
         id: toolBar
         y: 0
@@ -114,7 +117,10 @@ Item {
 
                 height: 30
 
-                onClicked: root.StackView.view.push("qrc:/ProcessView.qml", { inProcessPid: pid })
+                onClicked: root.StackView.view.push("qrc:/ProcessView.qml", {
+                                                        inProcessPid: pid,
+                                                        inProcessSettingsAddress: settingsAddresses,
+                                                        inProcessSettingsContent: settingsContent})
 
                 RowLayout {
                     id: procLayout

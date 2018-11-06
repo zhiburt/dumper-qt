@@ -10,6 +10,8 @@ Page {
     id: root
 
     property string inProcessPid
+    property int inProcessSettingsAddress: 1
+    property int inProcessSettingsContent: 1
 
     property variant stringList: null
 
@@ -84,7 +86,7 @@ Page {
     }
 
     Component.onCompleted: {
-        procDump.get(inProcessPid)
+        procDump.get(inProcessPid, inProcessSettingsAddress, inProcessSettingsContent)
         updateText()
     }
 }
