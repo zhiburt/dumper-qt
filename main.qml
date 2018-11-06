@@ -63,16 +63,14 @@ ApplicationWindow {
             menu: Menu{
                 MenuItem{
                     text: qsTr("Open")
+
                 }
 
                 MenuItem{
                     text: qsTr("Save")
                 }
 
-                MenuItem{
-                    text: qsTr("...")
-                }
-
+                MenuSeparator{}
 
                 MenuItem{
                     text: qsTr("...")

@@ -42,6 +42,10 @@ Page {
                 ToolButton {
                     id: toolButton1
                     text: qsTr("search")
+
+                    onClicked: root.StackView.view.push("qrc:/SearchChaneOfBytes.qml", {
+                                                            inProcessPid: inProcessPid,
+                                                            dump: procDump })
                 }
 
                 ToolButton {
@@ -62,7 +66,6 @@ Page {
         model: stringList
         anchors {
             fill: parent
-            margins: Dimensions.x(15)
         }
 
         delegate: Text {
@@ -70,6 +73,7 @@ Page {
                 horizontalCenter: parent.horizontalCenter
             }
 
+            //text: index + ": \t" +  qsTr(model.modelData)
             text: qsTr(model.modelData)
             font.pixelSize: Dimensions.y(10)
             textFormat: Text.PlainText

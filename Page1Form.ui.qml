@@ -12,7 +12,7 @@ Page {
     property int settingsCont: 1
 
     header:    Label {
-        text: qsTr(backend.userName)
+        text: qsTr("Processes")
         font.pixelSize: Qt.application.font.pixelSize * 2
             }
 
@@ -28,7 +28,7 @@ Page {
         }
     }
 
-    BackEnd {
+    /*BackEnd {
         id: backend
     }
 
@@ -39,4 +39,5 @@ Page {
 
         onTextChanged: backend.userName = text
     }
+    */
 }

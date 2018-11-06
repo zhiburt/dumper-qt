@@ -10,5 +10,6 @@
         <file>ConversationPage.qml</file>
         <file>ProcesesList.qml</file>
         <file>ProcessView.qml</file>
+        <file>SearchChaneOfBytes.qml</file>
     </qresource>
 </RCC>
