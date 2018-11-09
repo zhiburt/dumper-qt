@@ -1,6 +1,8 @@
-#include "processdump.h"
+﻿#include "processdump.h"
 
 #include <iostream>
+#include <algorithm>
+#include <string>
 
 extern "C" char* getDumpCann(int pid, int addrrType, int scnTp);
 extern "C" void getShortAddress(const char* line, unsigned long *x1, unsigned long *x2);
@@ -42,5 +44,52 @@ void ProcessDump::setPid(const QString &pid){
     dumpProcess = "2";
 
     emit dumpChanged();
+}
+
+//regular for find 1 byte in oct from dump
+int ProcessDump::searchChaneOfBytes(const QString chane){
+    std::string ch = getChane();
+    if (ch.empty()){
+        std::cout << "chane invalid" << std::endl;
+        return -1;
+    }
+
+
+    int amauntBytesInChane = chane.count() / (16 + 7);
+    unsigned int amauntSpaces = static_cast<unsigned int>(((16 + 7) * amauntBytesInChane));
+
+    std::string sub = chane.toStdString();
+    int count = 0;
+    for(size_t i = ch.find (sub); i != std::string::npos; i = ch.find (sub, i + amauntSpaces))
+    {
+        ++count;
+    }
+
+
+    return count;
+}
+
+std::string ProcessDump::getChane(){
+    std::regex reg("((?:(?:\\w|\\d){2}\\s)+(?!\\s)(?:\\w|\\d){2})");
+    std::cmatch math;
+
+    auto d = dumpProcess.split("\n");
+    std::stringstream buf;
+    std::string str = dumpProcess.toStdString().c_str();
+    const char *c_str = NULL;
+    for (int i = 0; i < d.length(); ++i){
+
+        c_str = d[i].toLatin1().data();
+
+        while (std::regex_search (c_str, math, reg)) {
+                /*for(std::cmatch::iterator it = math.cbegin(); it != math.cend();  ++it, ij++){
+                    buf << *it << " " << ij << "\n";
+                }*/
+                buf <<  math[1] << " ";
+                c_str = math.suffix().first;
+        }
+    }
+
+    return buf.rdbuf()->str();;
 }
 

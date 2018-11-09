@@ -62,6 +62,8 @@ Page {
                 id: sendButton
                 text: qsTr("search")
                 enabled: messageField.length > 0
+
+                onClicked: label.text = dump.searchChaneOfBytes(messageField.text)
             }
         }
     }

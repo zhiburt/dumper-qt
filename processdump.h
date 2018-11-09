@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QString>
+#include <regex>
 
 class ProcessDump : public QObject
 {
@@ -16,10 +17,13 @@ public:
     Q_INVOKABLE void get(const QString &pid, int settingsAddresses, int settingsContent);
     QString getDump();
     void setPid(const QString &pid);
-
+    Q_INVOKABLE int searchChaneOfBytes(const QString chane);
 
 signals:
     void dumpChanged();
+
+protected:
+    std::string getChane();
 
 private:
     QString dumpProcess;
